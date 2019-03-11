@@ -73,6 +73,11 @@
                                                 <span style="font-size: small">修改</span>
                                             </i>
                                         </button>
+                                        <button class="btn btn-danger btn-xs" th:onclick="'javascript:toDelete('+${user.id}+')'">
+                                            <i class="ace-icon fa bigger-130">
+                                                <span style="font-size: small">删除</span>
+                                            </i>
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -103,6 +108,24 @@
     function toUpdate(dom) {
         var userName = $(dom).parent().parent().find("[sid=username]").text();
         location.href = globalPath+"/user/toUpdatePage/"+userName;
+    }
+    function toDelete(userId) {
+        if(confirm("确定要删除该用户吗?")){
+            $.ajax({
+                url:globalPath+"/user/"+userId,
+                type: 'DELETE',
+                data:{
+                    _method:'delete'
+                },
+                success:function (result) {
+                    result && result.code && alert(result.des);
+                    location.href = globalPath+"/user/list"
+                },
+                error:function (a,b,c) {
+                    console.log(a,b,c);
+                }
+            });
+        }
     }
     /*]]>*/
 </script>

@@ -71,4 +71,6 @@ public interface UserService {
      * @param user  用户信息
      */
     void  cacheUserInfo(String token, User user);
+
+    boolean deleteUser(Integer id);
 }

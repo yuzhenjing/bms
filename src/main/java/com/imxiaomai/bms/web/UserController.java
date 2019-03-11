@@ -1,6 +1,7 @@
 package com.imxiaomai.bms.web;
 
 import com.github.pagehelper.PageInfo;
+import com.imxiaomai.bms.common.ServerFailException;
 import com.imxiaomai.bms.entity.User;
 import com.imxiaomai.bms.service.UserService;
 import com.imxiaomai.bms.util.BaseAction;
@@ -110,6 +111,23 @@ public class UserController extends BaseAction {
         } catch (Exception e) {
             e.printStackTrace();
             return error("更新用户信息失败", e);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public ResMsg delete(@PathVariable(value = "id") Integer id) {
+        try {
+            boolean hasDeleted = userService.deleteUser(id);
+            if (hasDeleted) {
+                return success("删除用户成功");
+            } else {
+                return fail(SERVER_FAIL, "删除失败", null);
+            }
+        } catch (ServerFailException e) {
+            return fail(SERVER_FAIL, e.getMessage(), null);
+        } catch (Exception e) {
+            return error("服务器异常", e);
         }
     }
 

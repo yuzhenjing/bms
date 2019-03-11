@@ -161,4 +161,11 @@ public class UserServiceImpl implements UserService {
         redisTemplate.opsForValue().set(Constants.KEY_REDIS_PREFIX + token, user);
     }
 
+    @Override
+    public boolean deleteUser(Integer id) {
+        User user = new User();
+        user.setId(id);
+        userMapper.delete(user);
+        return true;
+    }
 }

@@ -1,5 +1,7 @@
 package com.imxiaomai.bms.security;
 
+import com.imxiaomai.bms.entity.Role;
+import com.imxiaomai.bms.entity.User;
 import com.imxiaomai.bms.mapper.RoleMapper;
 import com.imxiaomai.bms.mapper.UserMapper;
 
@@ -10,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
